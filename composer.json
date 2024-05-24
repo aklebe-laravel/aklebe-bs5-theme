@@ -1,0 +1,13 @@
+{
+  "name": "aklebe-laravel/aklebe-bs5-theme",
+  "type": "laravel-theme",
+  "description": "Bootstrap 5 Theme",
+  "authors": [
+    {
+      "name": "Andreas Klebe",
+      "email": "a.klebe.work@gmail.com"
+    }
+  ],
+  "require": {
+  }
+}
