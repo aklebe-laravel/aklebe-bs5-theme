@@ -393,6 +393,12 @@ h2 {
   color: #404010;
 }
 
+.staging-demo {
+  @extend .staging;
+  background-color: #40c0c0;
+  color: #104040;
+}
+
 .staging-prod {
   @extend .staging;
   //background-color: #c04040;
