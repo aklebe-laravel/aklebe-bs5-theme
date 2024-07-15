@@ -13,6 +13,9 @@
                     <span class="bi bi-dash-lg"></span> <a href="{{ route('contact') }}">{{ __('Contact') }}</a>
                     <span class="bi bi-dash-lg"></span> <a href="{{ route('cms-page',['uri' => 'faq']) }}">{{ __('FAQ') }}</a>
                 @endif
+                <div class="mt-2 decent">
+                    <span>Core version: {{ config('app.version') }}</span>
+                </div>
             </div>
         </div>
     </div>
