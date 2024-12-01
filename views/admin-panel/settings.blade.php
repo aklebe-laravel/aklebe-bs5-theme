@@ -13,7 +13,7 @@
     $modelName = 'CoreConfig';
     $formObjectId = null;
     $isFormOpen = false;
-    $objectModelInstanceDefaultValues = [
+    $objectInstanceDefaultValues = [
         'user_id' => $relevantUserId,
     ];
 @endphp

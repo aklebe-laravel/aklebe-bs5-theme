@@ -10,7 +10,7 @@
         @livewire($livewireForm, [
             'formObjectId' => $formObjectId,
             'isFormOpen' => !!($formObjectId),
-            'objectModelInstanceDefaultValues' => $objectModelInstanceDefaultValues,
+            'objectInstanceDefaultValues' => $objectInstanceDefaultValues,
             // 'readonly' => $readonly,
             // 'actionable' => !$readonly,
         ],
