@@ -1,6 +1,7 @@
 @php
     use Modules\Market\app\Services\SystemInfoService;
-    /** @var \Modules\Market\app\Services\SystemInfoService $systemInfoService */
+
+    /** @var SystemInfoService $systemInfoService */
     $systemInfoService = app(SystemInfoService::class);
     $tableData = $systemInfoService->getSystemInfo();
 @endphp
