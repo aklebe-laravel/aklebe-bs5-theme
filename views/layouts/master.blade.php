@@ -33,7 +33,7 @@
 
     @livewireStyles
 
-    <script>
+    <script type="text/javascript">
         var appData = {!! app('php_to_js')->toJson() !!};
         var translations = {!! $_trans !!};
         var currentLocale = '{{ $_currentLocale }}';
@@ -50,33 +50,33 @@
 
 </head>
 <body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100 {{ session()->has('admin_user_id') ? 'bg-danger' : '' }}"
-     x-data="new website.Website()"
-     x-init="start()"
->
+    <div class="min-h-screen bg-gray-100 {{ session()->has('admin_user_id') ? 'bg-danger' : '' }}"
+         x-data="new website.Website()"
+         x-init="start()"
+    >
 
-    @include('components.message-box')
+        @include('components.message-box')
 
-    @include('inc.header')
+        @include('inc.header')
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-banner">
-                {{ $header }}
-                @include('inc.breadcrumbs')
-            </div>
-        </header>
-    @endif
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-banner">
+                    {{ $header }}
+                    @include('inc.breadcrumbs')
+                </div>
+            </header>
+        @endif
 
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
 
-    @include('inc.footer')
-</div>
+        @include('inc.footer')
+    </div>
 
-@livewireScripts
+    @livewireScripts
 </body>
 </html>
