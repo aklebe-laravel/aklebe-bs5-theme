@@ -1,8 +1,9 @@
 @php
     use Illuminate\Support\Facades\Auth;
+    use Modules\WebsiteBase\app\Services\ConfigService;
 
     /**
-     * @var \Modules\WebsiteBase\app\Services\Config $config
+     * @var ConfigService $config
      * @var string $livewireForm like "market-form-user"
      * @var string $livewireTable like "market-data-table-user"
      */

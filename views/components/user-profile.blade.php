@@ -10,9 +10,7 @@
         @livewire($livewireForm, [
             'formObjectId' => $formObjectId,
             'isFormOpen' => !!($formObjectId),
-            'objectInstanceDefaultValues' => $objectInstanceDefaultValues,
-            // 'readonly' => $readonly,
-            // 'actionable' => !$readonly,
+            //'objectInstanceDefaultValues' => $objectInstanceDefaultValues,
         ],
         key($livewireKey))
     </div>
