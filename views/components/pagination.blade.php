@@ -1,6 +1,8 @@
 @php
+    use Modules\SystemBase\app\Http\Livewire\Pagination;
+
     /**
-     * @var \Modules\SystemBase\app\Http\Livewire\Pagination $this
+     * @var Pagination $this
      */
 @endphp
 <div>
