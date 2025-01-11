@@ -1,18 +1,21 @@
 @php
-    use Modules\TelegramApi\app\Services\TelegramService;use Modules\WebsiteBase\app\Services\WebsiteTelegramService;
+    use Modules\SystemBase\app\Services\LivewireService;
+    use Modules\SystemBase\app\Services\ModuleService;
+    use Modules\TelegramApi\app\Services\TelegramApiService;
+    use Modules\TelegramApi\app\Services\TelegramService;
 
-    $publicPortal = app('website_base_config')->get('site.public', false);
+    $publicPortal = app('website_base_config')->getValue('site.public', false);
 
-    /** @var \Modules\SystemBase\app\Services\ModuleService $moduleService */
-    $moduleService = app(\Modules\SystemBase\app\Services\ModuleService::class);
+    /** @var ModuleService $moduleService */
+    $moduleService = app(ModuleService::class);
     $_telegramBot = null;
     if ($moduleTelegramExists = $moduleService->moduleExists('TelegramApi')) {
+        $telegramApiService = app(TelegramApiService::class);
+        /** @var TelegramService $telegramService */
         $telegramService = app(TelegramService::class);
-        /** @var WebsiteTelegramService $websiteTelegramService */
-        $websiteTelegramService = app(WebsiteTelegramService::class);
-        $_telegramBot = $telegramService->getDefaultBotName();
+        $_telegramBot = $telegramApiService->getDefaultBotName();
     }
-    $livewireKey = \Modules\SystemBase\app\Services\LivewireService::getKey('login-form');
+    $livewireKey = LivewireService::getKey('login-form');
 @endphp
 
 <x-auth-card>
@@ -25,7 +28,7 @@
         ], key($livewireKey))
     </div>
 
-    @if ($_telegramBot && $websiteTelegramService->isTelegramEnabled())
+    @if ($_telegramBot && $telegramService->isTelegramEnabled())
         <div class="card dt-edit-form editable pt-5 pb-2">
             <div class="telegram-login">
                 <script async src="https://telegram.org/js/telegram-widget.js?22"

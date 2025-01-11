@@ -9,7 +9,7 @@
     ];
 
     $remainingCount = '-';
-    if ($maxAttempts = (int)app('website_base_config')->get('email.rate-limiter.max', 0)) {
+    if ($maxAttempts = (int)app('website_base_config')->getValue('email.rate-limiter.max', 0)) {
         $remainingCount = RateLimiter::remaining('email-rate-limiter', $maxAttempts);
     }
 

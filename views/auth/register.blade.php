@@ -1,7 +1,11 @@
 @php
-    $publicPortal = app('website_base_config')->get('site.public', false);
-    /** @var \Modules\WebsiteBase\app\Forms\AuthRegister $registerForm */
-    $livewireKey = \Modules\SystemBase\app\Services\LivewireService::getKey('register-form');
+    use Modules\SystemBase\app\Services\LivewireService;
+    use Modules\WebsiteBase\app\Forms\AuthRegister;
+
+    /** @var AuthRegister $registerForm */
+
+    $publicPortal = app('website_base_config')->getValue('site.public', false);
+    $livewireKey = LivewireService::getKey('register-form');
 @endphp
 <x-auth-card>
     @include('auth.inc.header')
