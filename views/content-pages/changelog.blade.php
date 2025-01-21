@@ -1,8 +1,9 @@
 @php
-    use Illuminate\Database\Eloquent\Collection;use Illuminate\Support\Carbon;use Modules\Acl\app\Models\AclResource;
+    use Illuminate\Support\Carbon;
 
-    /** @var Collection $changeLogCollection */
+    /** @var array $groupedChangelog */
 
+//dump($groupedChangelog)
 @endphp
 <x-app-layout>
     <x-slot name="header">
@@ -16,46 +17,47 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="description">
-                        <div class="chapter">
-                            <div class="container-fluid changelog-markdown">
-                                @foreach($changeLogCollection as $history)
-                                    @php
-                                        $timeLocale = Carbon::parse($history->commit_created_at)->locale('de');
-                                    @endphp
-                                    <div class="row p-1">
-                                        <div class="col-12 col-md-4 text-start text-nowrap">
-                                            <span class="{{ (($timeLocale->diffInDays(Carbon::now()) <= 7)) ? 'text-success' : 'text-primary' }}">{{ $timeLocale->shortRelativeToNowDiffForHumans() }}</span>
-                                            {{--<span class="small text-muted fst-italic">({{ $history->commit_created_at }})</span>--}}
-                                        </div>
-                                        <div class="col-12 col-md-4 text-center">
-                                            {{--                                            {{ $history->path ?: '[APP]' }} ({{ $history->getKey() }})--}}
-                                        </div>
-                                        <div class="col-12 col-md-4 text-end">
-                                            {{--                                            {{ substr($history->author, 0, strpos($history->author,'<')) }}--}}
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        @if ($history->messages_public)
-                                            <div class="col-12 text-start p-3">
-                                                {{ Illuminate\Mail\Markdown::parse($history->messages_public) }}
-                                            </div>
-                                        @endif
-                                        @if ($history->messages_staff && Auth::user()->hasAclResource(AclResource::RES_STAFF))
-                                            <div class="col-12 text-start bg-warning-subtle p-3">
-                                                {{ Illuminate\Mail\Markdown::parse($history->messages_staff) }}
-                                            </div>
-                                        @endif
-                                        @if ($history->messages && $filter === 'all' && (Auth::user()->hasAclResource([AclResource::RES_STAFF, AclResource::RES_ADMIN])))
-                                            <div class="col-12 text-start bg-secondary-subtle p-3 decent">
-                                                {{ Illuminate\Mail\Markdown::parse($history->messages) }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-
+                        <h4>
+                            {{ __('Changelog') }} - Anliegende Commits gruppiert bis zu {{ $nearestSeconds }} Sekunden.
+                        </h4>
                     </div>
+                    <div class="chapter">
+                        <div class="container-fluid changelog-markdown">
+                            @foreach($groupedChangelog as $group)
+                                <div class="row">
+                                    <div class="col-12 text-start bg-primary-subtle p-3">
+                                        {{ Carbon::createFromFormat('Y-m-d H:i:s', $group['created'][count($group['created']) - 1])->diffForHumans()  }}
+                                        @if($group['paths'] ?? null)<span class="small">{{ implode(',', $group['paths']) }}</span>@endif
+                                        @if($group['authors'] ?? null)<span class="small">({{ implode(',', $group['authors']) }})</span>@endif
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    @if($group['messages_public'] ?? null)
+                                        <div class="col-12 text-start text-success bg-light-subtle p-3">
+                                            @foreach($group['messages_public'] as $message)
+                                                {{ Illuminate\Mail\Markdown::parse($message) }}
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    @if($group['messages_staff'] ?? null)
+                                        <div class="col-12 text-start text-primary bg-light-subtle p-3">
+                                            @foreach($group['messages_staff'] as $message)
+                                                {{ Illuminate\Mail\Markdown::parse($message) }}
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    @if($group['messages'] ?? null)
+                                        <div class="col-12 text-start bg-secondary-subtle p-3 decent small">
+                                            @foreach($group['messages'] as $message)
+                                                {{ Illuminate\Mail\Markdown::parse($message) }}
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
