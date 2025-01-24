@@ -8,7 +8,7 @@
         <h2>{{ __('Hello :name', ['name' => $user->name]) }}</h2>
 
         <p>
-            Dein Import ist abgeschlossen.
+            {{ __('Your import was completed. :current/:total rows were imported.', ['current' => $results->getData('import_rows_success' , '?'), 'total' => $results->getData('import_rows_requested' , '?')]) }}
         </p>
 
         @include('notifications.emails.inc.body-foot')
