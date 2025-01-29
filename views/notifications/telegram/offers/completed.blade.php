@@ -1,5 +1,8 @@
 @php
-    /** @var \Modules\Market\app\Models\Offer $offer */
+    use Modules\Market\app\Models\Offer;
+
+    /** @var Offer $offer */
+
     $urlToOffer = route('manage-data', ['modelName' => 'Offer', 'modelId' => $offer->shared_id]);
     $urlToTargetUser = route('user-profile', ['id' => $offer->addressedToUser->shared_id]);
 @endphp
