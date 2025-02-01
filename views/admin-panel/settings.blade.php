@@ -4,8 +4,8 @@
 
     /**
      * @var ConfigService $config
-     * @var string $livewireForm like "market-form-user"
-     * @var string $livewireTable like "market-data-table-user"
+     * @var string $livewireForm like "my-module-form-user"
+     * @var string $livewireTable like "my-module-data-table-user"
      */
 
     $relevantUserId = Auth::id();
