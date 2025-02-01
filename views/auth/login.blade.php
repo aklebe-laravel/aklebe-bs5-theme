@@ -4,7 +4,7 @@
     use Modules\TelegramApi\app\Services\TelegramApiService;
     use Modules\TelegramApi\app\Services\TelegramService;
 
-    $publicPortal = app('website_base_config')->getValue('site.public', false);
+    $publicPortal = config('website-base.module_website_public', false);
 
     /** @var ModuleService $moduleService */
     $moduleService = app(ModuleService::class);

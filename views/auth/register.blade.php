@@ -4,7 +4,7 @@
 
     /** @var AuthRegister $registerForm */
 
-    $publicPortal = app('website_base_config')->getValue('site.public', false);
+    $publicPortal = config('website-base.module_website_public', false);
     $livewireKey = LivewireService::getKey('register-form');
 @endphp
 <x-auth-card>
