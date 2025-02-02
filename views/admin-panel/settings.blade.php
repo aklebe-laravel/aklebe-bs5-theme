@@ -1,9 +1,9 @@
 @php
     use Illuminate\Support\Facades\Auth;
-    use Modules\WebsiteBase\app\Services\ConfigService;
+    use Modules\WebsiteBase\app\Services\CoreConfigService;
 
     /**
-     * @var ConfigService $config
+     * @var CoreConfigService $config
      * @var string $livewireForm like "my-module-form-user"
      * @var string $livewireTable like "my-module-data-table-user"
      */
