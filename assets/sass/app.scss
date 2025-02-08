@@ -46,9 +46,13 @@ h2 {
   padding: 4px;
 }
 
+.navbar-collapse.show {
+  background-color: #ffffff;
+  @extend .border, .rounded;
+}
+
 .navbar-collapse.show, .dropdown-menu.show {
   padding: 8px;
-  background-color: #f0f0f0;
   z-index: $zindex-dropdown;
 }
 
