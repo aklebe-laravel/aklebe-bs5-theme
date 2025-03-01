@@ -10,7 +10,7 @@
         x-cloak
         x-transition
 >
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-message-box">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" x-text="messageBox.title"></h5>

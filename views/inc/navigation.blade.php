@@ -149,7 +149,7 @@ if ($userService->hasUserResource(Auth::user(), AclResource::RES_TESTER)) {
                             <x-dropdown-link :href="route('logout')">
                                 {{ __('Logout') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('user-profile', Auth::user()->shared_id)">
+                            <x-dropdown-link :href="Auth::user()->getFrontendLink()">
                                 {{ __('User Profile') }}
                             </x-dropdown-link>
                             @foreach($testUsers as $testUser)
