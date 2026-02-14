@@ -1,20 +1,17 @@
-// Tailwind
+// 1. Zuerst alle @use Regeln
+@use 'bootstrap/scss/bootstrap' with (
+  $font-size-base: 0.9rem
+);
+@use 'variables'; // Deine eigenen Variablen
+
+// 2. Dann CSS-Imports (Sass erlaubt @import für CSS-URLs weiterhin)
+@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+// 3. Dann Tailwind-Direktiven
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-// Bootstrap icons
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
-// adjust some bootstrap variables
-$font-size-base: 0.9rem;
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
-
-// Variables
-@import 'variables';
-
 
 body {
   //background-color: #d4af37;
@@ -53,7 +50,7 @@ h2 {
 
 .navbar-collapse.show, .dropdown-menu.show {
   padding: 8px;
-  z-index: $zindex-dropdown;
+  z-index: bootstrap.$zindex-dropdown;
 }
 
 // ---------------------------------------------------------
@@ -90,7 +87,7 @@ h2 {
   .multi-carousel-control {
     cursor: pointer;
     position: absolute;
-    z-index: $zindex-sticky; //$zindex-fixed:
+    z-index: bootstrap.$zindex-sticky; //$zindex-fixed:
     top: 0;
     bottom: 0;
     width: 15%;
@@ -223,7 +220,7 @@ h2 {
       padding: 16px;
 
       .title {
-        color: $primary;
+        color: bootstrap.$primary;
         text-align: center;
         min-height: 60px;
         font-size: 1.4em;
@@ -341,22 +338,22 @@ h2 {
 
 .box-offer-status-APPLIED {
   @extend .rounded, .bg-white;
-  border: 1px solid $secondary;
+  border: 1px solid bootstrap.$secondary;
 }
 
 .box-offer-status-NEGOTIATION {
   @extend .rounded, .bg-white;
-  border: 1px solid $warning;
+  border: 1px solid bootstrap.$warning;
 }
 
 .box-offer-status-REJECTED {
   @extend .rounded, .bg-white;
-  border: 1px solid $danger;
+  border: 1px solid bootstrap.$danger;
 }
 
 .box-offer-status-CLOSED {
   @extend .rounded, .bg-white;
-  border: 1px solid $success;
+  border: 1px solid bootstrap.$success;
 }
 
 .staging {
@@ -549,17 +546,17 @@ h2 {
 
   .message.error {
     background-color: #b02020;
-    color: $color-contrast-light;
+    color: bootstrap.$color-contrast-light;
   }
 
   .message.success {
     background-color: #209020;
-    color: $color-contrast-light;
+    color: bootstrap.$color-contrast-light;
   }
 
   .message.info {
     background-color: #90a0a0;
-    color: $color-contrast-light;
+    color: bootstrap.$color-contrast-light;
   }
 }
 
@@ -577,7 +574,7 @@ h2 {
 
 // Used for description for example
 .form-text {
-  color: $body-color;
+  color: bootstrap.$body-color;
   margin-bottom: 1.4rem;
 }
 
