@@ -2,7 +2,7 @@
     // @todo: resolve the asset issue
     return;
 
-    $urlToImage = themes('images/markt-banner2.jpg');
+    $urlToImage = themes('images/banner-cloud.jpg');
 @endphp
 @if($urlToImage)
     <div style="width: 100%; padding: 18px;">
